@@ -24,7 +24,9 @@ def checksrc(src):
 def inlog(src,lvl,msg):
     """takes new inbound logs"""
     if not checksrc(src):
-        raise InvalidLogSource
+        register(src)
+        if not checksrc(src):
+            raise InvalidLogSource
     log=(src,lvl,msg)
     mlr.append(log)
     for cli in regclis:
