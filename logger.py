@@ -5,8 +5,13 @@
 mlr=[] #master log record
 regclis=[] #registered clients,form: (src,srcoblbl)
 
+intstack=[] #internal debug stack
+
 class InvalidLogSource(BaseException):
     pass
+
+def debug(debugmsg):
+    intstack.append(debugmsg)
 
 def register(src):
     """records new clients to setup log inbox"""
@@ -14,11 +19,14 @@ def register(src):
     srcoblblname=str(src)+'_oblbl'
     globals()[srcoblblname]=[]
     regclis.append((src,srcoblblname))
+    debug("registered: "+str(src))
 
 def checksrc(src):
     for cliset in regclis:
         if cliset[0]==src:
+            debug("src: "+str(src)+" found in list: "+str(regclis))
             return True
+    debug("src: "+str(src)+" not found in list: "+str(regclis))
     return False
 
 def inlog(src,lvl,msg):
@@ -26,6 +34,7 @@ def inlog(src,lvl,msg):
     if not checksrc(src):
         register(src)
         if not checksrc(src):
+            debug("message: "+str(msg)+" from source: "+ str(src)+" is invalid")
             raise InvalidLogSource
     log=(src,lvl,msg)
     mlr.append(log)
@@ -39,8 +48,8 @@ def outlog(src):
         if src==cliset[0]:
             templist=eval(cliset[1]).copy()
             eval(cliset[1]).clear()
+            debug("sent message stack to source: "+str(src))
             return templist
 
 def masterlog():
     return mlr
-
