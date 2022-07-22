@@ -1,5 +1,8 @@
 # ptgstu-logger
-A custom, dependency free, logging solution developed for use in Pythagorous Studio Software and wherever the standard library is unavailable.
+
+NOTICE: This project actually works (to my knowledge) and is more or less feature complete. This might very well be a first for me! :D
+
+A custom, dependency free, logging solution developed for use in Pythagorous Studio Software and wherever the standard library is unavailable. 
 
 
 Here's a demo of a standard client side implementation of logger
