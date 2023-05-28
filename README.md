@@ -1,8 +1,6 @@
 # ptgstu-logger
 
-NOTICE: This project actually works (to my knowledge) and is more or less feature complete. This might very well be a first for me! :D
-
-A custom, dependency free, logging solution developed for use in Pythagorous Studio Software and wherever the standard library is unavailable. 
+A custom, dependency free, logging solution developed for use in Pythagorous Studio Software and wherever the standard library is unavailable, like a graphing calculator.
 
 
 Here's a demo of a standard client side implementation of logger
@@ -25,6 +23,9 @@ def log(msg,lvl=0):
 log("hello")
 print(logger.intstack) #view the internal debugging stack log
 log("ello")
+```
+
+This project actually works and is more or less feature complete. This might very well be a first for me! :D
 ```
 Will give the following output
 ```
